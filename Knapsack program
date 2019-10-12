@@ -1,0 +1,66 @@
+import java.util.*;
+public class Knap
+{
+    public static void main(String a[])
+    {
+        Scanner in=new Scanner(System.in);
+        int n=in.nextInt();
+        int mc=in.nextInt();
+        int val[]=new int[n];
+        int wei[]=new int[n];
+        int pw[]=new int[n];
+        for(int i=0;i<n;i++)
+            val[i]=in.nextInt();
+        for(int i=0;i<n;i++)
+            wei[i]=in.nextInt();
+        for(int i=0;i<n;i++)
+            pw[i]=val[i]/wei[i];
+        for(int i=0;i<n-1;i++)
+            {
+                for(int j=0;j<n-1-i;j++)
+            {
+                if(pw[j]<pw[j+1])
+                {
+                    int temp=pw[j];
+                    pw[j]=pw[j+1];
+                    pw[j+1]=temp;
+                    temp=val[j];
+                    val[j]=val[j+1];
+                    val[j+1]=temp;
+                    temp=wei[j];
+                    wei[j]=wei[j+1];
+                    wei[j+1]=temp;
+                }
+                
+            }
+            }
+            int tv=0;
+            for(int i=0;i<n;i++)
+                 System.out.print(pw[i]+" ");
+            System.out.println();
+            for(int i=0;i<n;i++)
+                 System.out.print(val[i]+" ");
+            System.out.println();
+            for(int i=0;i<n;i++)
+                 System.out.print(wei[i]+" ");
+            System.out.println();
+            int i;
+            for(i=0;i<n;i++)
+            {
+                if(wei[i]<mc)
+                {
+                    tv=tv+val[i];
+                    mc=mc-wei[i];
+                }
+                else
+                    break;
+                
+                    
+            }
+            float ttv=0;
+            int f=(mc*val[i])/wei[i];
+            ttv=tv+f;
+            System.out.println(ttv);
+
+    }
+}
