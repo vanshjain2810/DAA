@@ -1,52 +1,48 @@
-import java.util.*;
+import java.io.*;
 public class Main
 {
-    public static void main(String a[])
-    {
-        Scanner in=new Scanner(System.in);
-        int n=in.nextInt();
-        int mc=in.nextInt();
-        int val[]=new int[n];
-        int wei[]=new int[n];
-        for(int i=0;i<n;i++)
-            val[i]=in.nextInt();
-        for(int i=0;i<n;i++)
-            wei[i]=in.nextInt();
-        for(int i=0;i<n-1;i++)
-            {
-                for(int j=0;j<n-1-i;j++)
-            {
-                if(val[j]<val[j+1])
-                {
-                    int temp=val[j];
-                    val[j]=val[j+1];
-                    val[j+1]=temp;
-                    temp=wei[j];
-                    wei[j]=wei[j+1];
-                    wei[j+1]=temp;
-                }
-                
-            }
-            }
-            int tv=0;
+    public static void main(String a[])throws IOException
+    { 
+        BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+           int t=Integer.parseInt(br.readLine());
+        while(t-->0)
+        {
+            int n=Integer.parseInt(br.readLine());
+            int mc=Integer.parseInt(br.readLine());
+            
+            int val[]=new int[n];
+            int wei[]=new int[n];
+            String s[] = br.readLine().split(" ");
+                String st[] = br.readLine().split(" ");
+             for(int i=0;i<n;i++)
+                val[i]=Integer.parseInt(s[i]);
             for(int i=0;i<n;i++)
-                 System.out.print(val[i]+" ");
-            System.out.println();
+                wei[i]=Integer.parseInt(st[i]);
+        
+            int dp[][]=new int[n+1][mc+1];
             for(int i=0;i<n;i++)
-                 System.out.print(wei[i]+" ");
-            System.out.println();
-            int i;
-            for(i=0;i<n;i++)
+                dp[i][0]=0;
+            for(int i=0;i<=mc;i++)
+                dp[0][i]=0;
+            for(int i=1;i<=n;i++)
             {
-                if(wei[i]<=mc)
+                for(int j=1;j<=mc;j++)
                 {
-                    tv=tv+val[i];
-                    mc=mc-wei[i];
-                }
+                    if(j>=wei[i-1])
+                         dp[i][j]=Math.max(val[i-1]+dp[i-1][j-wei[i-1]], dp[i-1][j]);
                 
-                    
+                        
+                    else
+                       dp[i][j]=dp[i-1][j];
+                   
+                }
+               
             }
-            System.out.println(tv);
+    
+            System.out.println(dp[n][mc]);
+            
+        }
+        
 
     }
 }
