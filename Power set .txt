@@ -1,0 +1,35 @@
+import java.util.*;
+public class MyClass {
+     static ArrayList<String> nikal= new ArrayList<>();
+    static void permut(String s,String out)
+    {
+        if(s.length()==0)
+            {
+                if(out.equals(" ") || nikal.contains(out))
+                    return;
+                nikal.add(out);
+                return;
+            }
+            String out1=out;
+            String out2=out+s.charAt(0);
+            s=s.substring(1,s.length());
+            permut(s,out1);
+            permut(s,out2);
+            
+        
+    }
+    // complete the function
+    static ArrayList<String> powerSet(String s)
+    {
+        // add your code here
+        String out="";
+        permut(s,out);
+        return nikal;
+            
+    }
+    public static void main(String args[]) {
+        powerSet("abc");
+        Collections.sort(nikal);
+        System.out.println(nikal);
+    }
+}
