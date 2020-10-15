@@ -14,7 +14,7 @@ public class Knap
         for(int i=0;i<n;i++)
             wei[i]=in.nextInt();
         for(int i=0;i<n;i++)
-            pw[i]=val[i]/wei[i];
+            pw[i]=wei[i]/val[i];
         for(int i=0;i<n-1;i++)
             {
                 for(int j=0;j<n-1-i;j++)
