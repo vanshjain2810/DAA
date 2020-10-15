@@ -1,0 +1,46 @@
+import java.util.*;
+import java.io.*;
+public class MyClass {
+    static void insert(ArrayList<Integer> ar, int temp)
+    {
+        if(ar.size()==0 || ar.get(ar.size()-1)<=temp)
+            {
+                ar.add(temp);
+                return;
+            }
+        int ele=ar.get(ar.size()-1);
+        ar.remove(ar.size()-1);
+        
+        // System.out.println("Before"+ele);
+        insert(ar,temp);
+        
+        // System.out.println("After"+ele+" Array "+ ar);
+        ar.add(ele);
+        
+    }
+    static void sort(ArrayList<Integer> ar)
+    {
+        if(ar.size()==1)
+            return;
+        int temp=ar.get(ar.size()-1);
+        ar.remove(ar.size()-1);
+        
+        // System.out.println("Before"+temp);
+        sort(ar);
+        // System.out.println("After"+temp);
+        insert(ar,temp);
+        
+    }
+    public static void main(String args[])throws IOException {
+        BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+        int n=Integer.parseInt(in.readLine());
+        String[] st=in.readLine().split(" ");
+        
+        ArrayList<Integer> ar =new ArrayList();
+        for(int i=0;i<n;i++)
+            ar.add(Integer.parseInt(st[i]));
+     
+        sort(ar);
+      System.out.println(ar);
+    }
+}
