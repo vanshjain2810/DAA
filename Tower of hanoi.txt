@@ -1,0 +1,36 @@
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+    static int count=0;
+    static void toh(int n,int s,int h, int d)
+    {
+        count++;
+        if(n==1)
+        {
+            System.out.println("move disk "+n+" from rod "+s+" to rod "+d);
+            return;
+        }
+        toh(n-1,s,d,h);
+        System.out.println("move disk "+n+" from rod "+s+" to rod "+d);
+        toh(n-1,h,s,d);
+        
+    }
+	public static void main (String[] args)throws IOException  {
+		//code
+		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+		int t=Integer.parseInt(in.readLine());
+		while(t-->0)
+		{
+		    
+		    int n=Integer.parseInt(in.readLine());
+		    int s=1,h=2,d=3;
+		    toh(n,s,h,d);
+		    
+        System.out.println(count);
+		}
+	}
+}
