@@ -1,17 +1,16 @@
-n,weight=map(int,input().split())
-di={}
-for i in range(n):
-    a,b=map(int,input().split())
-    di[a/b]=b
-di=sorted(di.items(),reverse=True)
-i=0
-pr=0
-for i,j in di:
-    if(weight>=j):
-        weight-=j
-        pr+=i*j
-    else:
-        pr+=i*weight
-        weight=0
-    i+=1
-print('%.4f'%pr)
+w,n=list(map(int,input().split()))
+l=list(map(int,input().split()))
+
+ma=[[0 for j in range(w+1)] for i in range(n+1)]
+
+for i in range(1,n+1):
+    for j in range(1,w+1):
+        val=ma[i-1][j]
+        if j>=l[i-1]:
+            v=ma[i-1][j-l[i-1]]+l[i-1]
+            if v>val:
+                val=v
+        ma[i][j]=val
+print(ma[n][w])
+            
+            
